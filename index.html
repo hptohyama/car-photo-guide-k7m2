@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>車両日報 写真マニュアル</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --ink:#1d2330; --muted:#5d6675; --line:#e2e5ea;
+  --accent:#1f6feb; --accent-soft:#e8f0fe; --ok:#1a7f37; --ok-soft:#e6f4ea;
+  --warn:#9a6700; --warn-soft:#fff4d6; --danger:#b42318; --danger-soft:#fdecea;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;
+  font-size:17px;line-height:1.7}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{padding:20px 0 8px}
+h1{font-size:23px;line-height:1.35;margin:0 0 4px}
+.sub{color:var(--muted);font-size:14px;margin:0}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 16px;margin:0 -16px;
+  display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;font-size:14px;text-decoration:none;color:var(--accent);background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:4px 12px;white-space:nowrap}
+section{margin-top:28px;scroll-margin-top:56px}
+h2{font-size:20px;margin:0 0 10px}
+h3{font-size:17px;margin:0 0 4px}
+p{margin:0 0 10px}
+ul{margin:0 0 10px;padding-left:1.3em}
+li{margin-bottom:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.note{border-radius:10px;padding:10px 12px;margin:0 0 12px;font-size:15px}
+.note.warn{background:var(--warn-soft)}
+.note.danger{background:var(--danger-soft)}
+.tbd{background:#ffe58f;color:#5c4400;border-radius:4px;padding:0 4px;font-size:.88em;font-weight:700}
+.draft{background:#ffe58f;color:#5c4400;border-radius:10px;padding:10px 12px;font-size:14px;margin:12px 0 0}
+.small{font-size:14px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--card)}
+th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+th{background:#eef1f5;font-size:14px}
+td.n{text-align:center;font-weight:700;white-space:nowrap}
+.flow{counter-reset:f;list-style:none;padding:0;margin:0}
+.flow li{counter-increment:f;position:relative;padding:10px 12px 10px 48px;background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.flow li::before{content:counter(f);position:absolute;left:12px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;
+  font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+
+/* 車のタブ */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;position:sticky;top:0;z-index:4;background:var(--bg);padding:6px 0 8px}
+.tab{font:inherit;border:2px solid var(--line);background:var(--card);border-radius:10px;padding:10px 2px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink)}
+.tab b{font-size:14px;letter-spacing:.02em}
+.tab span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(0,0,0,.25);display:inline-block}
+.tab.on{border-color:var(--accent);background:var(--accent-soft)}
+.carhead{display:flex;gap:12px;align-items:center}
+.carhead img{width:84px;aspect-ratio:3/4;object-fit:cover;border-radius:8px;cursor:zoom-in}
+.carhead .nm{font-size:21px;font-weight:700;line-height:1.3}
+.cnt{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.cnt span{font-size:13px;font-weight:700;border-radius:6px;padding:1px 8px;background:#eef1f5}
+.shot{display:grid;grid-template-columns:42% 1fr;gap:12px;align-items:start}
+.shot img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block;background:#ddd;cursor:zoom-in}
+.no{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);border-radius:6px;padding:1px 8px;margin-bottom:4px}
+.shot h3{font-size:17px;line-height:1.4}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:0 6px;vertical-align:2px}
+.tag.d7{background:var(--warn-soft);color:var(--warn)}
+.pt{font-size:15px;margin:6px 0 0;padding-left:1.2em;line-height:1.55}
+.pt li{margin-bottom:3px}
+.carnote{font-size:14px;background:var(--accent-soft);border-radius:6px;padding:4px 8px;margin-top:6px;line-height:1.5}
+.next{display:block;width:100%;font:inherit;font-weight:700;color:#fff;background:var(--accent);border:0;border-radius:10px;padding:12px;cursor:pointer}
+.hint{font-size:13px;color:var(--muted);text-align:center;margin:-4px 0 10px}
+
+/* 拡大表示 */
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:20;padding:12px}
+#lb.open{display:flex}
+#lb img{max-width:100%;max-height:100%;border-radius:6px}
+
+/* チェックリスト */
+#ck{padding:12px 14px}
+.ck-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.ck-date{font-size:18px;font-weight:700}
+.seg{display:inline-flex;border:1px solid var(--accent);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-size:14px;border:0;background:#fff;color:var(--accent);padding:4px 12px;cursor:pointer}
+.seg button.on{background:var(--accent);color:#fff}
+.ck-sub{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 0 4px}
+.ck-mode{font-size:14px;color:var(--muted)}
+.ck-status{font-weight:700;font-size:15px}
+.ck-status.all{color:var(--ok)}
+.ck-group{font-size:14px;font-weight:700;color:var(--muted);margin:8px 0 0}
+label.ck{display:flex;align-items:center;gap:10px;padding:5px 2px;border-bottom:1px dashed var(--line);font-size:16px;line-height:1.4;cursor:pointer}
+label.ck input{width:22px;height:22px;flex:none;accent-color:var(--ok)}
+label.ck small{color:var(--muted);font-size:13px}
+label.ck.done{color:var(--ok)}
+textarea{width:100%;font:inherit;font-size:16px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;min-height:44px;resize:vertical}
+.ck-foot{display:flex;justify-content:flex-end;margin-top:6px}
+.btn-reset{font:inherit;font-size:13px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px;cursor:pointer}
+footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>車両日報の写真撮影マニュアル</h1>
+  <p class="sub">アルバイトスタッフ用 ／ 毎月7日・21日</p>
+  <p class="draft">下書きです。<span class="tbd">確認中</span> の部分はまだ決まっていません。</p>
+</header>
+
+<!-- やること -->
+<section id="intro" style="margin-top:16px">
+  <ol class="flow">
+    <li>鍵を持って、車のまわりと中を<b>目で見る</b>（傷・ガラスのひび・ドラレコの向き・車内のゴミ） <span class="tbd">鍵の場所 確認中</span></li>
+    <li>下の車の名前を押して、<b>1台ずつ</b>順番に撮る</li>
+    <li>LINE WORKSで遠山さんに<b>1台ずつ</b>送る</li>
+    <li><a href="#check">チェックリスト</a>をスクショして、<b>その1枚だけ</b>で送る</li>
+  </ol>
+  <p class="small" style="margin:4px 0 0">傷やひびを見つけたら、その場所の写真も撮って遠山さんにすぐ伝えてください。 <span class="tbd">連絡のしかた 確認中</span></p>
+</section>
+
+<!-- 車ごとの撮り方 -->
+<section id="cars" style="margin-top:20px">
+  <h2>写真が必要な車両（4台）</h2>
+  <p class="small">車の名前を押すと、撮る写真が順番に出ます。写真を押すと大きく見られます。</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div id="panel"></div>
+</section>
+
+<!-- 送る -->
+<section id="send">
+  <h2>遠山さんに送る</h2>
+  <p>LINE WORKSの<b>遠山さんとの個別トーク</b>に送ります。</p>
+  <ol class="flow">
+    <li><b>1台ずつ</b>送る。1枚目から順番に写真を選んで送信。<br><span class="small">1台分が1つのまとまりになります。2台分を一度に選ばないでください。</span> <span class="tbd">選んだ順に並ぶか 確認中</span></li>
+    <li>4台分を送る</li>
+    <li><a href="#check">チェックリスト</a>に全部チェックを入れる</li>
+    <li>チェックリストの画面を<b>スクショ</b>して、<b>その1枚だけ</b>で送る<br><span class="small">車の写真と一緒に選ばないでください。</span></li>
+  </ol>
+</section>
+
+<!-- チェックリスト -->
+<section id="check">
+  <h2>チェックリスト</h2>
+  <p class="small">終わったらこの部分をスクショして、遠山さんに送ります。</p>
+  <div class="card" id="ck">
+    <div class="ck-head">
+      <span class="ck-date" id="ckDate"></span>
+      <span class="seg" role="group" aria-label="撮影日">
+        <button type="button" data-mode="7">7日</button><button type="button" data-mode="21">21日</button>
+      </span>
+    </div>
+    <div class="ck-sub"><span class="ck-mode" id="ckMode"></span><span class="ck-status" id="ckStatus"></span></div>
+
+    <div class="ck-group">写真を撮った</div>
+    <div id="ckCars"></div>
+
+    <div class="ck-group">目で見て確認した（4台とも）</div>
+    <label class="ck"><input type="checkbox" data-k="v_scratch">傷・へこみ・汚れ</label>
+    <label class="ck"><input type="checkbox" data-k="v_glass">ガラスのひび</label>
+    <label class="ck"><input type="checkbox" data-k="v_drarec">ドラレコの向き・動いているか</label>
+    <label class="ck"><input type="checkbox" data-k="v_trash">車内のゴミ</label>
+
+    <div class="ck-group">気になったこと（なければ「なし」）</div>
+    <textarea id="ckMemo" placeholder="例：SOLIO 左後ろに小さな傷"></textarea>
+
+    <div class="ck-group">送った</div>
+    <label class="ck"><input type="checkbox" data-k="sent">4台分の写真を1台ずつ送った</label>
+
+    <div class="ck-foot"><button type="button" class="btn-reset" id="ckReset">全部消す</button></div>
+  </div>
+</section>
+
+<!-- 困ったとき -->
+<section id="trouble">
+  <h2>困ったとき</h2>
+  <div class="card">
+    <h3>車がない（使っている・出ている）</h3>
+    <p><span class="tbd">確認中</span></p>
+    <h3>傷やひびを見つけた</h3>
+    <p>その場所の写真を撮って、遠山さんにすぐ伝えます。</p>
+    <h3>分からないことがある</h3>
+    <p style="margin:0">遠山さんに聞いてください。</p>
+  </div>
+</section>
+
+<footer>車両日報 写真撮影マニュアル（下書き）</footer>
+</div>
+
+<div id="lb" role="dialog" aria-label="写真の拡大"><img alt=""></div>
+
+<script>
+(function(){
+  /* 撮る写真の種類と、どの車でも同じポイント */
+  var SHOTS={
+    "01":{t:"前方",            p:["車の正面から","車全体と<b>ナンバー</b>が入るように"]},
+    "02":{t:"フロントガラス",   p:["近づいて<b>アップ</b>で","ひびや欠けが分かるように","ガラス全体が入るように"]},
+    "03":{t:"右前方（運転席側）", p:["運転席側の<b>前半分</b>","前のタイヤが入るように"]},
+    "04":{t:"右後方（運転席側）", p:["運転席側の<b>後ろ半分</b>","後ろのタイヤが入るように"]},
+    "05":{t:"左前方（助手席側）", p:["助手席側の<b>前半分</b>","前のタイヤが入るように"]},
+    "06":{t:"左後方（助手席側）", p:["助手席側の<b>後ろ半分</b>","後ろのタイヤが入るように"]},
+    "07":{t:"後方",            p:["車の真後ろから","車全体と<b>ナンバー</b>が入るように"]},
+    "08":{t:"メーター",         p:["<b>エンジンをかけてから</b>撮る","<b>走行距離</b>の数字がはっきり読めるように","光が反射しないように角度を変える"]},
+    "09":{t:"ドラレコ",         p:["画面に<b>日付と時間</b>が映るように","画面が消えていたら、ボタンを押してつける <span class='tbd'>確認中</span>"]},
+    "10":{t:"クーラント液",      d7:true,
+          p:["ボンネットを開けて、タンクを撮る <span class='tbd'>開ける人・開け方 確認中</span>","液の<b>量</b>と<b>目盛り</b>が写るように","暗いときはフラッシュをつける","<b>キャップは開けない。</b>エンジンのまわりはさわらない"]}
+  };
+  /* 車ごとの情報と、その車だけの注意 */
+  var CARS=[
+    {k:"voxy",  name:"VOXY",
+     shots:["01","02","03","04","05","06","07","08","09","10"],
+     note:{"08":"走行距離は、左下の小さな表示（ODO）の数字です。",
+           "10":"<span class='tbd'>このタンクで合っているか 確認中</span>"}},
+    {k:"freed", name:"FREED",
+     shots:["01","02","03","04","05","06","07","08","10"], nodrarec:true,
+     note:{"08":"走行距離は、真ん中の表示の「km」の数字です。",
+           "10":"<span class='tbd'>見本の撮り直し 確認中</span>"}},
+    {k:"probox",name:"PROBOX",
+     shots:["01","02","03","04","05","06","07","08","09","10"],
+     note:{"08":"走行距離は、「ODO」と書いてある数字です。",
+           "10":"ピンクの液が入ったタンクです。"}},
+    {k:"solio", name:"SOLIO",
+     shots:["01","02","03","04","05","06","07","08","09","10"],
+     note:{"08":"走行距離は、「P」の右にある「km」の数字です。",
+           "10":"緑のキャップのタンクです。"}}
+  ];
+
+  /* 1ファイル版では画像が埋め込まれている */
+  function img(n){ return (window.__IMG && window.__IMG[n]) || n; }
+  var tabs=document.getElementById("tabs"), panel=document.getElementById("panel");
+
+  CARS.forEach(function(c){
+    var b=document.createElement("button"); b.type="button"; b.className="tab"; b.setAttribute("role","tab");
+    b.setAttribute("data-car",c.k);
+    b.innerHTML="<b>"+c.name+"</b>";
+    b.addEventListener("click",function(){ show(c.k,true); });
+    tabs.appendChild(b);
+  });
+
+  function show(k,scroll){
+    var idx=0; CARS.forEach(function(c,i){ if(c.k===k) idx=i; });
+    var c=CARS[idx];
+    tabs.querySelectorAll(".tab").forEach(function(b){
+      var on=b.getAttribute("data-car")===c.k; b.classList.toggle("on",on); b.setAttribute("aria-selected",on);
+    });
+    var n7=c.shots.length, n21=c.shots.length-1;
+    var h="<div class='card carhead'>"
+      +"<div><div class='nm'>"+c.name+"</div>"
+      +"<div class='cnt'><span>7日 "+n7+"枚</span><span>21日 "+n21+"枚</span></div>"
+      +(c.nodrarec?"<div style='color:var(--danger);font-size:14px;margin-top:4px'>ドラレコがないので、ドラレコの写真は撮りません。</div>":"")
+      +"</div></div>";
+    c.shots.forEach(function(id,i){
+      var s=SHOTS[id];
+      h+="<div class='card shot'><img src='"+img(c.k+"_"+id+".jpg")+"' alt='"+c.name+" "+s.t+"の見本' loading='lazy' data-zoom>"
+        +"<div><span class='no'>"+(i+1)+"枚目</span>"+(s.d7?" <span class='tag d7'>7日だけ</span>":"")
+        +"<h3>"+s.t+"</h3><ul class='pt'>"+s.p.map(function(x){return "<li>"+x+"</li>";}).join("")+"</ul>"
+        +(s.d7?"<p class='small' style='margin:4px 0 0'>21日は撮りません。</p>":"")
+        +(c.note[id]?"<div class='carnote'>"+c.note[id]+"</div>":"")
+        +"</div></div>";
+    });
+    var nx=CARS[(idx+1)%CARS.length];
+    if(idx<CARS.length-1){
+      h+="<button type='button' class='next' data-next='"+nx.k+"'>次の車へ：「"+nx.name+"」</button>";
+    } else {
+      h+="<button type='button' class='next' data-goto='send'>4台終わったら：送り方へ</button>";
+    }
+    panel.innerHTML=h;
+    var nb=panel.querySelector(".next");
+    nb.addEventListener("click",function(){
+      if(nb.getAttribute("data-next")) show(nb.getAttribute("data-next"),true);
+      else document.getElementById("send").scrollIntoView({behavior:"smooth"});
+    });
+    try{ localStorage.setItem("vehicle-photo-tab",c.k); }catch(e){}
+    if(scroll) document.getElementById("cars").scrollIntoView({behavior:"smooth"});
+  }
+
+  var first="voxy";
+  try{ var t=localStorage.getItem("vehicle-photo-tab"); if(t) first=t; }catch(e){}
+  show(first,false);
+
+  /* 写真を押すと拡大 */
+  var lb=document.getElementById("lb"), lbi=lb.querySelector("img");
+  document.addEventListener("click",function(e){
+    var im=e.target.closest("img[data-zoom]");
+    if(im){ lbi.src=im.src; lbi.alt=im.alt; lb.classList.add("open"); }
+  });
+  lb.addEventListener("click",function(){ lb.classList.remove("open"); });
+
+  /* チェックリスト（その日の分だけ、この端末に覚えておく） */
+  var now=new Date();
+  var dayKey=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate();
+  var STORE="vehicle-photo-check";
+  var state={mode:(now.getDate()<=14?"7":"21"),checks:{},memo:""};
+  try{
+    var saved=JSON.parse(localStorage.getItem(STORE)||"null");
+    if(saved && saved.day===dayKey){ state=saved.state; }
+  }catch(e){}
+  function save(){ try{ localStorage.setItem(STORE,JSON.stringify({day:dayKey,state:state})); }catch(e){} }
+
+  var W="日月火水木金土";
+  document.getElementById("ckDate").textContent=(now.getMonth()+1)+"月"+now.getDate()+"日（"+W[now.getDay()]+"）";
+
+  function renderCars(){
+    var box=document.getElementById("ckCars"); box.innerHTML="";
+    CARS.forEach(function(c){
+      var n=c.shots.length-(state.mode==="7"?0:1);
+      var l=document.createElement("label"); l.className="ck";
+      l.innerHTML="<input type='checkbox' data-k='car_"+c.k+"'><span><b>"+c.name+"</b> "+n+"枚"+(c.nodrarec?" <small>ドラレコなし</small>":"")+"</span>";
+      box.appendChild(l);
+    });
+  }
+  function status(){
+    var boxes=document.querySelectorAll('#ck input[type=checkbox]');
+    var done=0; boxes.forEach(function(i){ if(i.checked) done++; });
+    var el=document.getElementById("ckStatus");
+    if(done===boxes.length){ el.textContent="✓ 全部終わりました"; el.className="ck-status all"; }
+    else { el.textContent="あと "+(boxes.length-done)+" こ"; el.className="ck-status"; }
+  }
+  function apply(){
+    document.querySelectorAll(".seg button").forEach(function(b){ b.classList.toggle("on",b.getAttribute("data-mode")===state.mode); });
+    document.getElementById("ckMode").textContent= state.mode==="7" ? "7日：クーラント液あり" : "21日：クーラント液なし";
+    renderCars();
+    document.querySelectorAll('#ck input[type=checkbox]').forEach(function(i){
+      var k=i.getAttribute("data-k"); i.checked=!!state.checks[k];
+      i.closest("label").classList.toggle("done",i.checked);
+      i.onchange=function(){ state.checks[k]=i.checked; i.closest("label").classList.toggle("done",i.checked); save(); status(); };
+    });
+    document.getElementById("ckMemo").value=state.memo||"";
+    status();
+  }
+  document.querySelectorAll(".seg button").forEach(function(b){
+    b.addEventListener("click",function(){ state.mode=b.getAttribute("data-mode"); save(); apply(); });
+  });
+  document.getElementById("ckMemo").addEventListener("input",function(e){ state.memo=e.target.value; save(); });
+  document.getElementById("ckReset").addEventListener("click",function(){
+    if(!confirm("チェックを全部消しますか？")) return;
+    state.checks={}; state.memo=""; save(); apply();
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
