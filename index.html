@@ -34,8 +34,17 @@ p{margin:0 0 10px}
   font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
 
 /* 見本 */
-.cnt{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 6px}
-.cnt span{font-size:14px;font-weight:700;border-radius:6px;padding:1px 10px;background:#eef1f5}
+.days{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 10px}
+.day{border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.35;border:2px solid}
+.day .dd{font-size:15px}
+.day .dd b{font-size:24px}
+.day .dn{font-size:15px;font-weight:700}
+.day .dn b{font-size:30px;margin-right:2px}
+.day .dc{font-size:13px;font-weight:700;margin-top:2px}
+.day.d7{background:#fff1e0;border-color:#e8590c;color:#8a3200}
+.day.d21{background:#e8f0fe;border-color:#1f6feb;color:#0b3d91}
+.tag.big{font-size:15px;padding:2px 10px;border-radius:6px;background:#e8590c;color:#fff;vertical-align:1px}
+.only7{font-size:14px;font-weight:700;color:#8a3200;background:#fff1e0;border-left:4px solid #e8590c;border-radius:4px;padding:4px 8px;margin:6px 0 0}
 .shot{display:grid;grid-template-columns:42% 1fr;gap:12px;align-items:start}
 .shot img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block;background:#ddd;cursor:zoom-in}
 .no{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);border-radius:6px;padding:1px 8px;margin-bottom:4px}
@@ -95,7 +104,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <section id="intro" style="margin-top:16px">
   <ol class="flow">
     <li><b>鍵を取る</b><br><span class="small">鍵は、各拠点の決まった場所にあります。</span></li>
-    <li>車のまわりと中を<b>目で見る</b>（傷・ガラスのひび・ドラレコの向き・車内のゴミ）</li>
+    <li>車のまわりと中を<b>目で見る</b>（傷・ガラスのひび・ドラレコの向き）</li>
     <li>下の<a href="#shots">見本</a>の順番で、<b>1台ずつ</b>撮る</li>
     <li>LINE WORKSで拠点の担当者に<b>1台ずつ</b>送る（<a href="#send">送り先</a>）</li>
     <li>自分の拠点の<a href="#check">チェックリスト</a>に全部チェックを入れて、<b>送信ボタン</b>を押す</li>
@@ -106,7 +115,10 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <!-- 見本 -->
 <section id="shots">
   <h2>撮る写真（見本：VOXY）</h2>
-  <div class="cnt"><span>7日 10枚</span><span>21日 9枚</span></div>
+  <div class="days">
+    <div class="day d7"><span class="dd">毎月 <b>7日</b></span><span class="dn"><b>10</b>枚</span><span class="dc">クーラント液あり</span></div>
+    <div class="day d21"><span class="dd">毎月 <b>21日</b></span><span class="dn"><b>9</b>枚</span><span class="dc">クーラント液なし</span></div>
+  </div>
   <p class="small">1台あたりの枚数です。ドラレコがない車は、ドラレコの写真がないので1枚少なくなります。写真を押すと大きく見られます。</p>
   <div id="shotList"></div>
 </section>
@@ -158,7 +170,6 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
       <label class="ck"><input type="checkbox" data-k="v_scratch">傷・へこみ・汚れ</label>
       <label class="ck"><input type="checkbox" data-k="v_glass">ガラスのひび</label>
       <label class="ck"><input type="checkbox" data-k="v_drarec">ドラレコの向き・動いているか</label>
-      <label class="ck"><input type="checkbox" data-k="v_trash">車内のゴミ</label>
 
       <div class="ck-group">送った</div>
       <label class="ck"><input type="checkbox" data-k="sent">全部の車の写真をLINE WORKSで1台ずつ送った</label>
@@ -221,9 +232,10 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   var h="";
   SHOTS.forEach(function(s,i){
     h+="<div class='card shot'><img src='"+img("voxy_"+s.id+".jpg")+"' alt='VOXY "+s.t+"の見本' loading='lazy' data-zoom>"
-      +"<div><span class='no'>"+(i+1)+"枚目</span>"+(s.d7?" <span class='tag'>7日だけ</span>":"")
-      +"<h3>"+s.t+"</h3><ul class='pt'>"+s.p.map(function(x){return "<li>"+x+"</li>";}).join("")+"</ul>"
-      +(s.d7?"<p class='small' style='margin:4px 0 0'>21日は撮りません。</p>":"")
+      +"<div><span class='no'>"+(i+1)+"枚目</span>"+(s.d7?" <span class='tag big'>7日だけ</span>":"")
+      +"<h3>"+s.t+"</h3>"
+      +(s.d7?"<p class='only7'>毎月7日だけ撮ります。21日は撮りません。</p>":"")
+      +"<ul class='pt'>"+s.p.map(function(x){return "<li>"+x+"</li>";}).join("")+"</ul>"
       +(s.note?"<div class='carnote'>"+s.note+"</div>":"")
       +"</div></div>";
   });
