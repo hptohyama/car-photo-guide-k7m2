@@ -221,7 +221,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   var h="";
   SHOTS.forEach(function(s,i){
     /* 一覧は小さい画像、押したときに大きい画像を読む */
-    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+"_s.webp")+"' data-full='"+img("voxy_"+s.id+".webp")+"' alt='VOXY "+s.t+"の見本' loading='lazy' decoding='async' width='422' height='560' data-zoom>"
+    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+"_s.webp")+"' data-full='"+img("voxy_"+s.id+".webp")+"' alt='VOXY "+s.t+"の見本' loading='lazy' decoding='async' data-zoom>"
       +"<div><span class='no'>"+(i+1)+"枚目</span>"+(s.d7?" <span class='tag'>7日だけ</span>":"")
       +"<h3>"+s.t+"</h3><ul class='pt'>"+s.p.map(function(x){return "<li>"+x+"</li>";}).join("")+"</ul>"
       +(s.d7?"<p class='small' style='margin:4px 0 0'>21日は撮りません。</p>":"")
