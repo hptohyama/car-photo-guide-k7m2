@@ -124,7 +124,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   <div class="card sendex">
     <h3>送るとこう並びます（VOXYの例）</h3>
     <p class="small">LINE WORKSのトーク画面です。左から右、上から下の順に 1枚目 → 10枚目。</p>
-    <img id="sendEx" src="send_example.webp" alt="LINE WORKSで1台分を送ったときの並び" loading="lazy" data-zoom>
+    <img id="sendEx" src="send_example.jpg" alt="LINE WORKSで1台分を送ったときの並び" loading="lazy" data-zoom>
   </div>
 </section>
 
@@ -200,7 +200,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   /* 1ファイル版では画像が埋め込まれている */
   function img(n){ return (window.__IMG && window.__IMG[n]) || n; }
   function el(id){ return document.getElementById(id); }
-  var se=el("sendEx"); if(se && window.__IMG) se.src=img("send_example.webp");
+  var se=el("sendEx"); if(se && window.__IMG) se.src=img("send_example.jpg");
 
   /* ---------- 見本（VOXY） ---------- */
   var SHOTS=[
@@ -220,8 +220,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   ];
   var h="";
   SHOTS.forEach(function(s,i){
-    /* 一覧は小さい画像、押したときに大きい画像を読む */
-    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+"_s.webp")+"' data-full='"+img("voxy_"+s.id+".webp")+"' alt='VOXY "+s.t+"の見本' loading='lazy' decoding='async' data-zoom>"
+    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+".jpg")+"' alt='VOXY "+s.t+"の見本' loading='lazy' data-zoom>"
       +"<div><span class='no'>"+(i+1)+"枚目</span>"+(s.d7?" <span class='tag'>7日だけ</span>":"")
       +"<h3>"+s.t+"</h3><ul class='pt'>"+s.p.map(function(x){return "<li>"+x+"</li>";}).join("")+"</ul>"
       +(s.d7?"<p class='small' style='margin:4px 0 0'>21日は撮りません。</p>":"")
