@@ -7,135 +7,181 @@
 <title>車両日報 写真マニュアル</title>
 <style>
 :root{
-  --bg:#f6f7f9; --card:#ffffff; --ink:#1d2330; --muted:#5d6675; --line:#e2e5ea;
-  --accent:#1f6feb; --accent-soft:#e8f0fe; --ok:#1a7f37; --ok-soft:#e6f4ea;
-  --warn:#9a6700; --warn-soft:#fff4d6; --danger:#b42318; --danger-soft:#fdecea;
+  --bg:#f2f4f7; --card:#ffffff; --ink:#1b2433; --muted:#5f6b7a; --line:#e2e7ee;
+  --navy:#1d4f91; --navy-2:#2563c9; --navy-soft:#edf3fc;
+  --amber:#c2410c; --amber-ink:#8a2f07; --amber-soft:#fff3eb;
+  --ok:#15803d; --ok-soft:#e9f6ee; --danger:#b42318;
+  --shadow:0 1px 2px rgba(16,24,40,.05);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;
-  font-size:17px;line-height:1.7}
-.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
-header{padding:20px 0 8px}
-h1{font-size:23px;line-height:1.35;margin:0 0 4px}
-.sub{color:var(--muted);font-size:14px;margin:0}
-section{margin-top:28px;scroll-margin-top:12px}
-h2{font-size:20px;margin:0 0 10px}
-h3{font-size:17px;margin:0 0 4px}
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;line-height:1.75;letter-spacing:.02em}
+/* 改行は文節の区切り（<wbr>）でだけ行う */
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 48px;word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
+a{color:var(--navy-2);text-decoration:underline;text-decoration-color:rgba(35,73,127,.35);text-underline-offset:3px}
 p{margin:0 0 10px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
-.tbd{background:#ffe58f;color:#5c4400;border-radius:4px;padding:0 4px;font-size:.88em;font-weight:700}
-.draft{background:#ffe58f;color:#5c4400;border-radius:10px;padding:10px 12px;font-size:14px;margin:12px 0 0}
 .small{font-size:14px;color:var(--muted)}
+
+/* 見出し */
+.hero{background:#fff;color:var(--ink);border:1px solid var(--line);border-top:5px solid var(--navy-2);border-radius:14px;padding:18px 18px 16px;box-shadow:var(--shadow)}
+.hero h1{font-size:22px;line-height:1.45;margin:0 0 10px;letter-spacing:.03em;color:var(--navy)}
+.hero .sub{display:inline-block;font-size:13px;color:var(--navy);background:var(--navy-soft);border-radius:999px;padding:3px 12px;margin:0}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--navy-2);margin:0 0 2px}
+section{margin-top:34px;scroll-margin-top:12px}
+h2{font-size:19px;line-height:1.45;margin:0 0 12px;padding-left:10px;border-left:4px solid var(--navy-2);color:var(--ink)}
+h3{font-size:16px;line-height:1.5;margin:0 0 4px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.tbd{background:#ffe58f;color:#5c4400;border-radius:4px;padding:0 4px;font-size:.88em;font-weight:700}
+
+/* 手順 */
 .flow{counter-reset:f;list-style:none;padding:0;margin:0}
-.flow li{counter-increment:f;position:relative;padding:10px 12px 10px 48px;background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
-.flow li::before{content:counter(f);position:absolute;left:12px;top:10px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;
-  font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.flow li{counter-increment:f;position:relative;padding:12px 14px 12px 52px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;box-shadow:var(--shadow)}
+.flow li::before{content:counter(f);position:absolute;left:14px;top:13px;width:26px;height:26px;border-radius:50%;background:var(--navy-2);color:#fff;
+  font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;letter-spacing:0}
+.note-line{font-size:14px;color:var(--muted);background:var(--card);border:1px dashed #cdd5e0;border-radius:12px;padding:10px 14px;margin:4px 0 0}
 
 /* 見本 */
 .days{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 10px}
-.day{border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.35;border:2px solid}
-.day .dd{font-size:15px}
-.day .dd b{font-size:24px}
-.day .dn{font-size:15px;font-weight:700}
-.day .dn b{font-size:30px;margin-right:2px}
-.day .dc{font-size:13px;font-weight:700;margin-top:2px}
-.day.d7{background:#fff1e0;border-color:#e8590c;color:#8a3200}
-.day.d21{background:#e8f0fe;border-color:#1f6feb;color:#0b3d91}
-.tag.big{font-size:15px;padding:2px 10px;border-radius:6px;background:#e8590c;color:#fff;vertical-align:1px}
-.only7{font-size:14px;font-weight:700;color:#8a3200;background:#fff1e0;border-left:4px solid #e8590c;border-radius:4px;padding:4px 8px;margin:6px 0 0}
-.shot{display:grid;grid-template-columns:42% 1fr;gap:12px;align-items:start}
-.shot img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block;background:#ddd;cursor:zoom-in}
-.no{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);border-radius:6px;padding:1px 8px;margin-bottom:4px}
-.shot h3{font-size:17px;line-height:1.4}
-.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:0 6px;vertical-align:2px;background:var(--warn-soft);color:var(--warn)}
-.pt{font-size:15px;margin:6px 0 0;padding-left:1.2em;line-height:1.55}
-.pt li{margin-bottom:3px}
-.carnote{font-size:14px;background:var(--accent-soft);border-radius:6px;padding:4px 8px;margin-top:6px;line-height:1.5}
-.sendex img{display:block;width:88%;max-width:340px;border:1px solid var(--line);margin:4px auto 0;border-radius:8px;cursor:zoom-in}
+.day{background:var(--card);border:1px solid var(--line);border-top:5px solid;border-radius:12px;padding:12px 10px 10px;display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.35;box-shadow:var(--shadow)}
+.day .dd{font-size:14px;color:var(--muted)}
+.day .dd b{font-size:24px;margin-left:2px}
+.day .dn{font-size:14px;font-weight:700;margin-top:2px;color:var(--ink)}
+.day .dn b{font-size:32px;margin-right:2px;letter-spacing:0}
+.day .dc{font-size:12px;font-weight:700;margin-top:6px;border-radius:999px;padding:2px 10px}
+.day.d7{border-top-color:var(--amber)}
+.day.d7 .dd b{color:var(--amber)}
+.day.d7 .dc{background:var(--amber-soft);color:var(--amber-ink)}
+.day.d21{border-top-color:var(--navy)}
+.day.d21 .dd b{color:var(--navy)}
+.day.d21 .dc{background:var(--navy-soft);color:var(--navy)}
+
+.shot{display:grid;grid-template-columns:40% 1fr;gap:14px;align-items:start}
+.shot img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;display:block;background:#dde3ea;cursor:zoom-in}
+.badges{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.badge{display:inline-flex;align-items:center;height:24px;font-size:13px;font-weight:700;line-height:1;border-radius:6px;padding:0 9px;letter-spacing:.04em}
+.badge.no{color:#fff;background:var(--navy)}
+.badge.d7{color:#fff;background:var(--amber)}
+.shot h3{font-size:17px;line-height:1.45}
+.only7{font-size:13px;font-weight:700;color:var(--amber-ink);background:var(--amber-soft);border-left:3px solid var(--amber);border-radius:4px;padding:5px 9px;margin:6px 0 0;line-height:1.55}
+.pt{font-size:15px;margin:8px 0 0;padding-left:1.15em;line-height:1.6}
+.pt li{margin-bottom:4px}
+.pt li::marker{color:var(--navy-2)}
+.carnote{font-size:13px;color:var(--navy);background:var(--navy-soft);border-radius:6px;padding:5px 9px;margin-top:8px;line-height:1.55}
+.sendex img{display:block;width:88%;max-width:340px;border:1px solid var(--line);margin:8px auto 0;border-radius:10px;cursor:zoom-in}
 
 /* 拡大表示 */
-#lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:20;padding:12px}
+#lb{position:fixed;inset:0;background:rgba(10,18,32,.9);display:none;align-items:center;justify-content:center;z-index:20;padding:12px}
 #lb.open{display:flex}
-#lb img{max-width:100%;max-height:100%;border-radius:6px}
+#lb img{max-width:100%;max-height:100%;border-radius:8px}
+
+/* 写真の送り先 */
+.sendto{padding:4px 16px}
+.sendto div{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.sendto div:last-child{border-bottom:0}
+.sendto div span{color:var(--navy);font-weight:700}
 
 /* チェックリスト */
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 8px}
-.tab{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--line);background:var(--card);border-radius:10px;padding:9px 2px;cursor:pointer;color:var(--ink);position:relative}
-.tab.on{border-color:var(--accent);background:var(--accent-soft)}
-.tab.sent::after{content:"✓";position:absolute;top:-7px;right:-5px;width:18px;height:18px;border-radius:50%;background:var(--ok);color:#fff;font-size:12px;line-height:18px}
-#ck{padding:12px 14px}
-.ck-title{font-size:18px;font-weight:700;margin:0 0 2px}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:0 0 10px;background:#e4e9f0;border-radius:12px;padding:4px}
+.tab{font:inherit;font-size:14px;font-weight:700;border:0;background:transparent;border-radius:9px;padding:9px 2px;cursor:pointer;color:var(--muted);position:relative;letter-spacing:.02em}
+.tab.on{background:#fff;color:var(--navy);box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.tab.sent::after{content:"✓";position:absolute;top:-5px;right:-3px;width:17px;height:17px;border-radius:50%;background:var(--ok);color:#fff;font-size:11px;line-height:17px}
+#ck{padding:16px}
+.ck-title{font-size:18px;font-weight:700;margin:0 0 2px;color:var(--navy)}
 .ck-title.ok{color:var(--ok)}
 .ck-sub{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0}
-.ck-mode{font-size:14px;color:var(--muted);margin:0}
-.ck-status{font-weight:700;font-size:15px}
+.ck-mode{font-size:13px;color:var(--muted);margin:0 0 4px}
+.ck-status{font-weight:700;font-size:14px;color:var(--amber);white-space:nowrap}
 .ck-status.all{color:var(--ok)}
-.ck-group{font-size:14px;font-weight:700;color:var(--muted);margin:8px 0 0}
-label.ck{display:flex;align-items:center;gap:10px;padding:5px 2px;border-bottom:1px dashed var(--line);font-size:16px;line-height:1.4;cursor:pointer}
-label.ck input{width:22px;height:22px;flex:none;accent-color:var(--ok)}
+.ck-group{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted);margin:14px 0 2px}
+label.ck{display:flex;align-items:center;gap:12px;padding:9px 2px;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5;cursor:pointer}
+label.ck input{width:22px;height:22px;flex:none;accent-color:var(--navy)}
 label.ck.done{color:var(--ok)}
-label.ck .plate{color:var(--muted);font-size:14px}
-label.ck .cnt2{margin-left:auto;font-size:14px;color:var(--muted);white-space:nowrap}
-label.ck small{color:var(--muted);font-size:13px}
+label.ck .plate{color:var(--muted);font-size:13px}
+label.ck .cnt2{margin-left:auto;font-size:13px;color:var(--muted);white-space:nowrap}
+label.ck small{color:var(--muted);font-size:12px}
 .nocars{font-size:15px;padding:6px 2px}
-.sendto{padding:6px 14px}
-.sendto div{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:16px}
-.sendto div:last-child{border-bottom:0}
-textarea,#ckName{width:100%;font:inherit;font-size:16px;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
-textarea{min-height:44px;resize:vertical}
-.send{display:block;width:100%;margin-top:12px;font:inherit;font-weight:700;font-size:17px;color:#fff;background:var(--ok);border:0;border-radius:10px;padding:13px;cursor:pointer}
-.send:disabled{background:#c5cad3;cursor:not-allowed}
+textarea,#ckName{width:100%;font:inherit;font-size:16px;border:1px solid #cfd7e2;border-radius:10px;padding:8px 10px;background:#fbfcfd}
+textarea:focus,#ckName:focus{outline:2px solid rgba(35,73,127,.25);border-color:var(--navy-2)}
+textarea{min-height:48px;resize:vertical}
+.send{display:block;width:100%;margin-top:16px;font:inherit;font-weight:700;font-size:16px;letter-spacing:.1em;color:#fff;background:var(--navy);border:0;border-radius:12px;padding:14px;cursor:pointer;box-shadow:0 4px 12px rgba(22,50,92,.25)}
+.send:disabled{background:#c3cad5;box-shadow:none;cursor:not-allowed}
 .ck-msg{font-size:14px;margin:8px 0 0;min-height:1em}
 .ck-msg.err{color:var(--danger)}
-footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
+
+/* 困ったとき */
+.steps{margin:0 0 14px;padding-left:1.4em}
+.steps li{margin-bottom:4px}
+.steps li::marker{color:var(--navy-2);font-weight:700}
+#trouble h3{color:var(--navy)}
+footer{margin-top:36px;color:var(--muted);font-size:12px;text-align:center;letter-spacing:.08em}
+
+/* 点検すること */
+.inspect{margin-top:12px}
+.inspect h3{color:var(--navy);margin-bottom:8px}
+.chk{list-style:none;margin:0;padding:0}
+.chk li{display:grid;grid-template-columns:6.2em 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.6}
+.chk li b{color:var(--navy);font-size:14px}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<header>
-  <h1>車両日報の写真撮影マニュアル</h1>
-  <p class="sub">アルバイトスタッフ用 ／ 毎月7日・21日</p>
+<header class="hero">
+  <h1>車両日報の|写真撮影|マニュアル</h1>
+  <p class="sub">アルバイト|スタッフ用 ／ 毎月|7日・21日</p>
 </header>
 
 <!-- やること -->
-<section id="intro" style="margin-top:16px">
+<section id="intro" style="margin-top:24px">
+  <h2>やること</h2>
   <ol class="flow">
-    <li><b>鍵を取る</b><br><span class="small">鍵は、各拠点の決まった場所にあります。</span></li>
-    <li>車のまわりと中を<b>目で見る</b>（傷・ガラスのひび・ドラレコの向き）</li>
-    <li>下の<a href="#shots">見本</a>の順番で、<b>1台ずつ</b>撮る</li>
-    <li>LINE WORKSで拠点の担当者に<b>1台ずつ</b>送る（<a href="#send">送り先</a>）</li>
-    <li>自分の拠点の<a href="#check">チェックリスト</a>に全部チェックを入れて、<b>送信ボタン</b>を押す</li>
+    <li><b>鍵を|取る</b><br><span class="small">鍵は、|各拠点の|決まった|場所に|あります。</span></li>
+    <li>車の|まわりと|中を|<b>目で見て|点検する</b>|（<a href="#inspect">点検すること</a>）</li>
+    <li>下の|<a href="#shots">見本</a>の|順番で、|<b>1台ずつ</b>|撮る</li>
+    <li>LINE WORKSで|拠点の|担当者に|<b>1台ずつ</b>|送る|（<a href="#send">送り先</a>）</li>
+    <li>自分の|拠点の|<a href="#check">チェックリスト</a>に|全部|チェックを|入れて、|<b>送信ボタン</b>を|押す</li>
   </ol>
-  <p class="small" style="margin:4px 0 0">傷やひびを見つけたら、その場所の写真も撮って、LINE WORKSで拠点の担当者（写真の送り先）にすぐ伝えてください。</p>
+  <div class="card inspect" id="inspect">
+    <h3>目で見て|点検すること</h3>
+    <ul class="chk">
+      <li><b>車体</b><span>傷・|擦れ・|へこみが|ないか</span></li>
+      <li><b>ガラス</b><span>ひび・|欠けが|ないか|（特に|フロントガラスの|飛び石）</span></li>
+      <li><b>タイヤ</b><span>空気が|減っていないか、|すり減り・|傷が|ないか</span></li>
+      <li><b>ライト・|ミラー</b><span>割れ・|破損が|ないか</span></li>
+      <li><b>ドラレコ</b><span>前を|向いているか、|動いているか、|日時が|合っているか</span></li>
+      <li><b>警告ランプ</b><span>エンジンを|かけたとき、|メーターに|警告ランプが|ついたままに|なっていないか</span></li>
+    </ul>
+  </div>
+  <p class="note-line">傷や|ひびを|見つけたら、|その場所の|写真も|撮って、|LINE WORKSで|拠点の|担当者|（写真の|送り先）に|すぐ|伝えてください。</p>
 </section>
 
 <!-- 見本 -->
 <section id="shots">
-  <h2>撮る写真（見本：VOXY）</h2>
+  <h2>撮る写真|（見本：VOXY）</h2>
   <div class="days">
     <div class="day d7"><span class="dd">毎月 <b>7日</b></span><span class="dn"><b>10</b>枚</span><span class="dc">クーラント液あり</span></div>
     <div class="day d21"><span class="dd">毎月 <b>21日</b></span><span class="dn"><b>9</b>枚</span><span class="dc">クーラント液なし</span></div>
   </div>
-  <p class="small">1台あたりの枚数です。ドラレコがない車は、ドラレコの写真がないので1枚少なくなります。写真を押すと大きく見られます。</p>
+  <p class="small">1台あたりの|枚数です。|ドラレコが|ない車は、|ドラレコの|写真が|ないので|1枚|少なく|なります。|写真を|押すと|大きく|見られます。</p>
   <div id="shotList"></div>
 </section>
 
 <!-- 送る -->
 <section id="send">
-  <h2>写真を送る</h2>
-  <p>LINE WORKSで、拠点の担当者との<b>個別トーク</b>に送ります。</p>
+  <h2>写真を|送る</h2>
+  <p>LINE WORKSで、|拠点の|担当者との|<b>個別トーク</b>に|送ります。</p>
   <div class="card sendto" id="sendTo"></div>
   <ol class="flow">
-    <li><b>1台ずつ</b>送る。写真は<b>1枚目から順番に</b>選んで送信。<br><span class="small">選んだ順に並びます。1台分が1つのまとまりになるので、2台分を一度に選ばないでください。</span></li>
-    <li>全部の車を送る</li>
-    <li>下の<a href="#check">チェックリスト</a>で自分の拠点を選び、全部チェックを入れ、名前を書いて<b>送信ボタン</b>を押す</li>
+    <li><b>1台ずつ</b>|送る。|写真は|<b>1枚目から|順番に</b>|選んで|送信。<br><span class="small">選んだ|順に|並びます。|1台分が|1つの|まとまりに|なるので、|2台分を|一度に|選ばないで|ください。</span></li>
+    <li>全部の|車を|送る</li>
+    <li>下の|<a href="#check">チェックリスト</a>で|自分の|拠点を|選び、|全部|チェックを|入れ、|名前を|書いて|<b>送信ボタン</b>を|押す</li>
   </ol>
   <div class="card sendex">
-    <h3>送るとこう並びます（VOXYの例）</h3>
-    <p class="small">LINE WORKSのトーク画面です。左から右、上から下の順に 1枚目 → 10枚目。</p>
+    <h3>送ると|こう|並びます|（VOXYの例）</h3>
+    <p class="small">LINE WORKSの|トーク画面です。|左から右、|上から下の|順に|1枚目 → 10枚目。</p>
     <img id="sendEx" src="send_example.jpg" alt="LINE WORKSで1台分を送ったときの並び" loading="lazy" data-zoom>
   </div>
 </section>
@@ -143,18 +189,18 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <!-- チェックリスト -->
 <section id="check">
   <h2>チェックリスト</h2>
-  <p class="small">自分の拠点を選んでください。全部チェックして名前を書くと、送信ボタンが押せるようになります。</p>
+  <p class="small">自分の|拠点を|選んで|ください。|全部|チェックして|名前を|書くと、|送信ボタンが|押せるように|なります。</p>
   <div class="tabs" role="tablist" id="siteTabs"></div>
   <div class="card" id="ck">
     <!-- 報告日ではないとき -->
     <div id="ckOff" hidden>
-      <p class="ck-title">今日は報告日ではありません</p>
-      <p class="small" style="margin:0">報告は毎月7日・21日です。</p>
+      <p class="ck-title">今日は|報告日では|ありません</p>
+      <p class="small" style="margin:0">報告は|毎月|7日・21日です。</p>
     </div>
 
     <!-- 送信済みのとき -->
     <div id="ckDone" hidden>
-      <p class="ck-title ok">✓ <span id="ckDoneLabel"></span>は送信済みです</p>
+      <p class="ck-title ok">✓ <span id="ckDoneLabel"></span>は|送信済みです</p>
       <p class="small" style="margin:0" id="ckDoneInfo"></p>
     </div>
 
@@ -166,15 +212,18 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
       <div class="ck-group">写真を撮った</div>
       <div id="ckCars"></div>
 
-      <div class="ck-group">目で見て確認した（全部の車）</div>
-      <label class="ck"><input type="checkbox" data-k="v_scratch">傷・へこみ・汚れ</label>
-      <label class="ck"><input type="checkbox" data-k="v_glass">ガラスのひび</label>
-      <label class="ck"><input type="checkbox" data-k="v_drarec">ドラレコの向き・動いているか</label>
+      <div class="ck-group">目で見て|点検した|（全部の車）</div>
+      <label class="ck"><input type="checkbox" data-k="v_body"><span>車体の|傷・|擦れ・|へこみ</span></label>
+      <label class="ck"><input type="checkbox" data-k="v_glass"><span>ガラスの|ひび・|欠け</span></label>
+      <label class="ck"><input type="checkbox" data-k="v_tire"><span>タイヤ|（空気・|すり減り・|傷）</span></label>
+      <label class="ck"><input type="checkbox" data-k="v_light"><span>ライト・|ミラーの|割れ・|破損</span></label>
+      <label class="ck"><input type="checkbox" data-k="v_drarec"><span>ドラレコの|向き・|動作・|日時</span></label>
+      <label class="ck"><input type="checkbox" data-k="v_warn"><span>メーターの|警告ランプ</span></label>
 
       <div class="ck-group">送った</div>
-      <label class="ck"><input type="checkbox" data-k="sent">全部の車の写真をLINE WORKSで1台ずつ送った</label>
+      <label class="ck"><input type="checkbox" data-k="sent"><span>全部の車の|写真を|LINE WORKSで|1台ずつ|送った</span></label>
 
-      <div class="ck-group">気になったこと（あれば）</div>
+      <div class="ck-group">気になったこと|（あれば）</div>
       <textarea id="ckMemo" placeholder="例：VOXY 左後ろに小さな傷"></textarea>
 
       <div class="ck-group">名前</div>
@@ -190,18 +239,20 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <section id="trouble">
   <h2>困ったとき</h2>
   <div class="card">
-    <h3>車がない（使っている・出ている）</h3>
-    <p>① <b>TimeTree（タイムツリー）</b>で予定を見るか、社員に聞いて、その車の予定を確認する<br>
-       ② 使用中などのときは、その車は<b>次の日に回す</b><br>
-       ③ そのことを、LINE WORKSで拠点の担当者に連絡する</p>
-    <h3>傷やひびを見つけた</h3>
-    <p>その場所の写真を撮って、LINE WORKSで拠点の担当者にすぐ伝えます。</p>
-    <h3>分からないことがある</h3>
-    <p style="margin:0">拠点の担当者（<a href="#send">写真の送り先</a>）に聞いてください。</p>
+    <h3>車がない|（使っている・|出ている）</h3>
+    <ol class="steps">
+      <li><b>TimeTree|（タイムツリー）</b>で|予定を|見るか、|社員に|聞いて、|その車の|予定を|確認する</li>
+      <li>使用中などの|ときは、|その車は|<b>次の日に|回す</b></li>
+      <li>そのことを、|LINE WORKSで|拠点の|担当者に|連絡する</li>
+    </ol>
+    <h3>傷や|ひびを|見つけた</h3>
+    <p>その場所の|写真を|撮って、|LINE WORKSで|拠点の|担当者に|すぐ|伝えます。</p>
+    <h3>分からない|ことがある</h3>
+    <p style="margin:0">拠点の|担当者|（<a href="#send">写真の|送り先</a>）に|聞いてください。</p>
   </div>
 </section>
 
-<footer>車両日報 写真撮影マニュアル</footer>
+<footer>車両日報|写真撮影|マニュアル</footer>
 </div>
 
 <div id="lb" role="dialog" aria-label="写真の拡大"><img alt=""></div>
@@ -213,30 +264,42 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   function el(id){ return document.getElementById(id); }
   var se=el("sendEx"); if(se && window.__IMG) se.src=img("send_example.jpg");
 
+  /* 文中の「|」は改行してよい区切り。<wbr> に変える（画面の幅に合わせて文節で改行される） */
+  function W(s){ return String(s).replace(/\|/g,"<wbr>"); }
+  (function(){
+    var tw=document.createTreeWalker(document.querySelector(".wrap"),NodeFilter.SHOW_TEXT), list=[], n;
+    while((n=tw.nextNode())) if(n.nodeValue.indexOf("|")>=0) list.push(n);
+    list.forEach(function(t){
+      var f=document.createDocumentFragment();
+      t.nodeValue.split("|").forEach(function(part,i){ if(i) f.appendChild(document.createElement("wbr")); f.appendChild(document.createTextNode(part)); });
+      t.parentNode.replaceChild(f,t);
+    });
+  })();
+
   /* ---------- 見本（VOXY） ---------- */
   var SHOTS=[
-    {id:"01",t:"前方",            p:["車の正面から","車全体と<b>ナンバー</b>が入るように"]},
-    {id:"02",t:"フロントガラス",   p:["近づいて<b>アップ</b>で","ひびや欠けが分かるように","ガラス全体が入るように"]},
-    {id:"03",t:"右前方（運転席側）", p:["運転席側の<b>前半分</b>","前のタイヤが入るように"]},
-    {id:"04",t:"右後方（運転席側）", p:["運転席側の<b>後ろ半分</b>","後ろのタイヤが入るように"]},
-    {id:"05",t:"左前方（助手席側）", p:["助手席側の<b>前半分</b>","前のタイヤが入るように"]},
-    {id:"06",t:"左後方（助手席側）", p:["助手席側の<b>後ろ半分</b>","後ろのタイヤが入るように"]},
-    {id:"07",t:"後方",            p:["車の真後ろから","車全体と<b>ナンバー</b>が入るように"]},
-    {id:"08",t:"メーター",         p:["<b>エンジンをかけてから</b>撮る","<b>走行距離</b>（ODOなど）の数字がはっきり読めるように","光が反射しないように角度を変える"]},
-    {id:"09",t:"ドラレコ",         p:["画面に<b>日付と時間</b>が映るように","画面が消えていたら、ボタンを押してつける","日付や時間がずれていたら、<b>今の日時に直してから</b>撮る"],
-     note:"ドラレコがない車は撮りません。"},
-    {id:"10",t:"クーラント液",      d7:true,
-     p:["ボンネットを開けたら、<b>固定のバーで止めてから</b>撮る","液の<b>量</b>と<b>目盛り</b>が写るように","暗いときはフラッシュをつける","<b>キャップは開けない。</b>エンジンのまわりはさわらない"],
-     note:"タンクの場所や形は、車によってちがいます。"}
+    {id:"01",t:"前方",               p:["車の|正面から","車全体と|<b>ナンバー</b>が|入るように"]},
+    {id:"02",t:"フロントガラス",      p:["近づいて|<b>アップ</b>で","ひびや|欠けが|分かるように","ガラス全体が|入るように"]},
+    {id:"03",t:"右前方|（運転席側）", p:["運転席側の|<b>前半分</b>","前の|タイヤが|入るように"]},
+    {id:"04",t:"右後方|（運転席側）", p:["運転席側の|<b>後ろ半分</b>","後ろの|タイヤが|入るように"]},
+    {id:"05",t:"左前方|（助手席側）", p:["助手席側の|<b>前半分</b>","前の|タイヤが|入るように"]},
+    {id:"06",t:"左後方|（助手席側）", p:["助手席側の|<b>後ろ半分</b>","後ろの|タイヤが|入るように"]},
+    {id:"07",t:"後方",               p:["車の|真後ろから","車全体と|<b>ナンバー</b>が|入るように"]},
+    {id:"08",t:"メーター",            p:["<b>エンジンを|かけてから</b>|撮る","<b>走行距離</b>|（ODOなど）の|数字が|はっきり|読めるように","光が|反射しないように|角度を|変える"]},
+    {id:"09",t:"ドラレコ",            p:["画面に|<b>日付と|時間</b>が|映るように","画面が|消えていたら、|ボタンを|押して|つける","日付や|時間が|ずれていたら、|<b>今の日時に|直してから</b>|撮る"],
+     note:"ドラレコが|ない車は|撮りません。"},
+    {id:"10",t:"クーラント液",         d7:true,
+     p:["ボンネットを|開けたら、|<b>固定のバーで|止めてから</b>|撮る","液の|<b>量</b>と|<b>目盛り</b>が|写るように","暗いときは|フラッシュを|つける","<b>キャップは|開けない。</b>|エンジンの|まわりは|さわらない"],
+     note:"タンクの|場所や形は、|車によって|ちがいます。"}
   ];
   var h="";
   SHOTS.forEach(function(s,i){
-    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+".jpg")+"' alt='VOXY "+s.t+"の見本' loading='lazy' data-zoom>"
-      +"<div><span class='no'>"+(i+1)+"枚目</span>"+(s.d7?" <span class='tag big'>7日だけ</span>":"")
-      +"<h3>"+s.t+"</h3>"
-      +(s.d7?"<p class='only7'>毎月7日だけ撮ります。21日は撮りません。</p>":"")
-      +"<ul class='pt'>"+s.p.map(function(x){return "<li>"+x+"</li>";}).join("")+"</ul>"
-      +(s.note?"<div class='carnote'>"+s.note+"</div>":"")
+    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+".jpg")+"' alt='VOXY "+s.t.replace(/\|/g,"")+"の見本' loading='lazy' data-zoom>"
+      +"<div><div class='badges'><span class='badge no'>"+(i+1)+"枚目</span>"+(s.d7?"<span class='badge d7'>7日だけ</span>":"")+"</div>"
+      +"<h3>"+W(s.t)+"</h3>"
+      +(s.d7?"<p class='only7'>"+W("毎月7日だけ|撮ります。|21日は|撮りません。")+"</p>":"")
+      +"<ul class='pt'>"+s.p.map(function(x){return "<li>"+W(x)+"</li>";}).join("")+"</ul>"
+      +(s.note?"<div class='carnote'>"+W(s.note)+"</div>":"")
       +"</div></div>";
   });
   el("shotList").innerHTML=h;
@@ -316,10 +379,10 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   function renderCars(){
     var s=siteOf(site), box=el("ckCars");
     if(!s || !s.cars){
-      box.innerHTML="<p class='nocars small'>"+(loadFailed?"車両の一覧を読み込めませんでした。電波のよいところで開き直してください。":"読み込み中…")+"</p>";
+      box.innerHTML="<p class='nocars small'>"+W(loadFailed?"車両の|一覧を|読み込めませんでした。|電波の|よいところで|開き直してください。":"読み込み中…")+"</p>";
       return;
     }
-    if(!s.cars.length){ box.innerHTML="<p class='nocars'>この拠点の車両リストは <span class='tbd'>確認中</span> です。</p>"; return; }
+    if(!s.cars.length){ box.innerHTML="<p class='nocars'>"+W("この拠点の|車両リストは|<span class='tbd'>確認中</span>|です。")+"</p>"; return; }
     box.innerHTML=s.cars.map(function(c,i){
       return "<label class='ck'><input type='checkbox' data-k='car_"+i+"'><span><b>"+esc(c.name)+"</b> <span class='plate'>"+esc(c.plate||"")+"</span>"
         +(c.nodrarec?" <small>ドラレコなし</small>":"")+"</span><span class='cnt2'>"+carCount(c)+"枚</span></label>";
@@ -328,7 +391,8 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 
   function boxes(){ return document.querySelectorAll("#ckOn input[type=checkbox]"); }
   function hasCars(){ var s=siteOf(site); return !!(s && s.cars && s.cars.length); }
-  function msg(t,err){ var m=el("ckMsg"); m.textContent=t||""; m.className="ck-msg"+(err?" err":""); }
+  /* t は画面側で用意した決まった文（「|」は改行の区切り） */
+  function msg(t,err){ var m=el("ckMsg"); m.innerHTML=W(esc(t||"")); m.className="ck-msg"+(err?" err":""); }
   function update(){
     var bs=boxes(), done=0; bs.forEach(function(i){ if(i.checked) done++; });
     var total=bs.length, ok=hasCars() && done===total;
@@ -351,7 +415,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     el("ckOn").hidden = !(period && !sent);
     if(!period) return;
     if(sent){
-      el("ckDoneLabel").textContent=siteName(site)+"の"+period.label;
+      el("ckDoneLabel").innerHTML=esc(siteName(site))+"の<wbr>"+esc(period.label);
       el("ckDoneInfo").textContent="送信："+sent.at+"　"+sent.name;
       return;
     }
@@ -384,13 +448,13 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
         done();
         if(res.ok || res.error==="already_sent"){ sentMap[mySite]=res.sent; save(); render(); return; }
         if(res.error==="not_period"){ period=null; render(); return; }
-        if(res.error==="period_mismatch"){ period=res.period; load(); render(); msg("報告する回が変わりました。もう一度チェックしてください。",true); return; }
-        if(res.error==="not_complete"){ msg("チェックが全部入っていません。開き直して、もう一度確かめてください。",true); update(); return; }
-        if(res.error==="no_cars"){ msg("この拠点の車両リストがまだありません。",true); update(); return; }
-        if(res.error==="no_name"){ msg("名前を書いてください。",true); update(); return; }
-        msg("送信できませんでした。少し待って、もう一度押してください。",true); update();
+        if(res.error==="period_mismatch"){ period=res.period; load(); render(); msg("報告する回が|変わりました。|もう一度|チェックしてください。",true); return; }
+        if(res.error==="not_complete"){ msg("チェックが|全部|入っていません。|開き直して、|もう一度|確かめてください。",true); update(); return; }
+        if(res.error==="no_cars"){ msg("この拠点の|車両リストが|まだ|ありません。",true); update(); return; }
+        if(res.error==="no_name"){ msg("名前を|書いてください。",true); update(); return; }
+        msg("送信できませんでした。|少し待って、|もう一度|押してください。",true); update();
       })
-      .catch(function(){ done(); msg("送信できませんでした。電波のよいところで、もう一度押してください。",true); update(); });
+      .catch(function(){ done(); msg("送信できませんでした。|電波の|よいところで、|もう一度|押してください。",true); update(); });
   });
 
   if(!siteOf(site)) site="kansai";
