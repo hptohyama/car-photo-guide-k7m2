@@ -76,6 +76,8 @@ p{margin:0 0 10px}
 .ck-status{font-weight:700;font-size:15px}
 .ck-status.all{color:var(--ok)}
 .ck-group{font-size:14px;font-weight:700;color:var(--muted);margin:8px 0 0}
+#ckOn.off label.ck{opacity:.5;cursor:not-allowed}
+.ck-offnote{background:var(--warn-soft);border-radius:8px;padding:8px 10px;margin-bottom:10px}
 label.ck{display:flex;align-items:center;gap:10px;padding:5px 2px;border-bottom:1px dashed var(--line);font-size:16px;line-height:1.4;cursor:pointer}
 label.ck input{width:22px;height:22px;flex:none;accent-color:var(--ok)}
 label.ck.done{color:var(--ok)}
@@ -212,10 +214,10 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   <p class="small">自分の|拠点を|選んで|ください。|全部|チェックして|名前を|書くと、|送信ボタンが|押せるように|なります。</p>
   <div class="tabs" role="tablist" id="siteTabs"></div>
   <div class="card" id="ck">
-    <!-- 報告日ではないとき -->
-    <div id="ckOff" hidden>
+    <!-- 報告日ではないとき（チェックリストは見られるが、チェック・送信はできない） -->
+    <div id="ckOff" class="ck-offnote" hidden>
       <p class="ck-title">今日は|報告日では|ありません</p>
-      <p class="small" style="margin:0">報告は|毎月|7日・21日です。</p>
+      <p class="small" style="margin:0">チェックと|送信は、|毎月|<b>7日・21日の|報告日</b>に|できます。</p>
     </div>
 
     <!-- 送信済みのとき -->
@@ -404,7 +406,12 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     }).join("");
   }
   /* 選んだ拠点の車両の行 */
-  function carCount(c){ return 12-(period.coolant?0:1)-(c.nodrarec?1:0); }
+  /* 1台の枚数。報告日でないときは 7日・21日 の両方を出す */
+  function carCount(c){
+    var n7=12-(c.nodrarec?1:0);
+    if(!period) return n7+"/"+(n7-1)+"枚";
+    return (period.coolant?n7:n7-1)+"枚";
+  }
   function renderCars(){
     var s=siteOf(site), box=el("ckCars");
     if(!s || !s.cars){
@@ -414,7 +421,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     if(!s.cars.length){ box.innerHTML="<p class='nocars'>"+W("この拠点の|車両リストは|<span class='tbd'>確認中</span>|です。")+"</p>"; return; }
     box.innerHTML=s.cars.map(function(c,i){
       return "<label class='ck'><input type='checkbox' data-k='car_"+i+"'><span><b>"+esc(c.name)+"</b> <span class='plate'>"+esc(c.plate||"")+"</span>"
-        +(c.nodrarec?" <small>ドラレコなし</small>":"")+"</span><span class='cnt2'>"+carCount(c)+"枚</span></label>";
+        +(c.nodrarec?" <small>ドラレコなし</small>":"")+"</span><span class='cnt2'>"+carCount(c)+"</span></label>";
     }).join("");
   }
 
@@ -427,6 +434,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     var total=bs.length, ok=hasCars() && done===total;
     var named=(el("ckName").value.trim()!=="");
     var st=el("ckStatus");
+    if(!period){ st.textContent=""; st.className="ck-status"; el("ckSend").disabled=true; return; }
     if(!hasCars()){ st.textContent=""; st.className="ck-status"; }
     else if(ok){ st.textContent="✓ 全部チェック済み"; st.className="ck-status all"; }
     else { st.textContent="あと "+(total-done)+" こ"; st.className="ck-status"; }
@@ -441,8 +449,22 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     var sent=period && sentMap[site];
     el("ckOff").hidden = !!period;
     el("ckDone").hidden = !sent;
-    el("ckOn").hidden = !(period && !sent);
-    if(!period) return;
+    el("ckOn").hidden = !!sent;
+    el("ckOn").classList.toggle("off",!period);
+    el("ckMemo").disabled = !period;
+    if(!period){
+      /* 報告日ではない：中身は見せるが、チェックと送信はできない */
+      el("ckLabel").textContent=siteName(site);
+      el("ckMode").textContent="写真の枚数は「7日/21日」です";
+      renderCars();
+      boxes().forEach(function(i){
+        i.checked=false; i.disabled=true; i.onchange=null;
+        i.closest("label").classList.remove("done");
+      });
+      el("ckMemo").value="";
+      update();
+      return;
+    }
     if(sent){
       el("ckDoneLabel").innerHTML=esc(siteName(site))+"の<wbr>"+esc(period.label);
       el("ckDoneInfo").textContent="送信："+sent.at+"　"+sent.name;
@@ -452,7 +474,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     el("ckMode").textContent= period.coolant ? "クーラント液の写真あり" : "クーラント液の写真なし";
     renderCars();
     boxes().forEach(function(i){
-      var k=i.getAttribute("data-k"); i.checked=!!state.checks[k];
+      var k=i.getAttribute("data-k"); i.disabled=false; i.checked=!!state.checks[k];
       i.closest("label").classList.toggle("done",i.checked);
       i.onchange=function(){ state.checks[k]=i.checked; i.closest("label").classList.toggle("done",i.checked); save(); msg(""); update(); };
     });
