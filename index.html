@@ -110,6 +110,10 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 .chk{list-style:none;margin:0;padding:0}
 .chk li{display:grid;grid-template-columns:6.2em 1fr;gap:10px;padding:7px 0;border-top:1px dashed var(--line);font-size:15px;line-height:1.6}
 .chk li b{font-size:15px}
+/* 傷の記号（3列の小さな枠） */
+.marks{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0 8px}
+.marks span{border:1px solid var(--line);border-radius:8px;padding:3px 4px;font-size:14px;line-height:1.5;text-align:center;white-space:nowrap}
+.marks b{margin-right:4px}
 /* 困ったとき（番号付き） */
 .steps{margin:0 0 12px;padding-left:1.4em}
 .steps li{margin-bottom:4px}
@@ -161,7 +165,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <!-- カーチェックシートの書き方 -->
 <section id="sheet">
   <h2>カーチェック|シートの|書き方</h2>
-  <p>1台に|1枚|書きます。|書いたら|<b>写真を|撮って|（11枚目）、|ほかの|写真と|一緒に|拠点の|担当者|（社員）に|送ります。</b>|これで|社員に|共有されます。</p>
+  <p>1台に|1枚|書きます。|書いたら|<b>最後の|写真として|撮って、|ほかの|写真と|一緒に|拠点の|担当者|（社員）に|送ります。</b>|これで|社員に|共有されます。</p>
   <div class="card">
     <img src="checksheet.jpg" alt="カーチェックシートの記入例" loading="lazy" data-zoom style="display:block;width:70%;max-width:300px;margin:0 auto 10px;border-radius:8px;cursor:zoom-in">
     <p class="small" style="text-align:center">記入例|（押すと|大きく|見られます）</p>
@@ -176,14 +180,10 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
       <li><b>その他備考欄</b>：|気づいた|ことが|あれば|書く|（なければ|空欄）</li>
     </ol>
     <h3>傷の|記号</h3>
-    <ul class="chk">
-      <li><b>○</b><span>擦り傷</span></li>
-      <li><b>△</b><span>へこみ</span></li>
-      <li><b>S</b><span>サビ</span></li>
-      <li><b>◆</b><span>塗装はげ</span></li>
-      <li><b>×</b><span>破損</span></li>
-      <li><b>T</b><span>飛び石</span></li>
-    </ul>
+    <div class="marks">
+      <span><b>○</b>擦り傷</span><span><b>△</b>へこみ</span><span><b>S</b>サビ</span>
+      <span><b>◆</b>塗装はげ</span><span><b>×</b>破損</span><span><b>T</b>飛び石</span>
+    </div>
     <p class="note-line"><b>新しく|ついた|傷</b>は、|記号の|下に|<b>二重線</b>を|引きます。|あわせて、|その場所の|写真と|文章でも|担当者に|共有してください。</p>
   </div>
 </section>
@@ -201,7 +201,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   </ol>
   <div class="card sendex">
     <h3>送ると|こう|並びます|（VOXYの例）</h3>
-    <p class="small">LINE WORKSの|トーク画面です。|左から右、|上から下の|順に|並びます。|この見本には|入っていませんが、|オイル交換の|ステッカー（10枚目）と|カーチェック|シート（11枚目）の|写真も|忘れずに|送ってください。</p>
+    <p class="small">LINE WORKSの|トーク画面です。|左から右、|上から下の|順に|並びます。|この見本には|入っていませんが、|オイル交換の|ステッカー（10枚目）と|カーチェック|シート（最後）の|写真も|忘れずに|送ってください。</p>
     <img id="sendEx" src="send_example.jpg" alt="LINE WORKSで1台分を送ったときの並び" loading="lazy" data-zoom>
   </div>
 </section>
@@ -241,7 +241,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
       <label class="ck"><input type="checkbox" data-k="v_warn"><span>メーターの|警告ランプ</span></label>
 
       <div class="ck-group">カーチェック|シート</div>
-      <label class="ck"><input type="checkbox" data-k="sheet"><span>全部の車の|カーチェック|シートを|書いて、|写真|（11枚目）を|撮った</span></label>
+      <label class="ck"><input type="checkbox" data-k="sheet"><span>全部の車の|カーチェック|シートを|書いて、|最後の|写真を|撮った</span></label>
 
       <div class="ck-group">送った</div>
       <label class="ck"><input type="checkbox" data-k="sent"><span>全部の車の|写真を|LINE WORKSで|1台ずつ|送った</span></label>
@@ -314,12 +314,12 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
      note:"ドラレコが|ない車は|撮りません。"},
     {id:"st",img:"sticker.jpg",t:"オイル交換の|ステッカー",
      p:["車に|貼ってある|<b>オイル交換の|ステッカー</b>を|撮る","<b>交換日・|走行距離・|次回交換</b>の|字が|読めるように、|近づいて|まっすぐ|撮る","光が|反射しないように|角度を|変える"]},
-    {id:"cs",img:"checksheet.jpg",t:"カーチェック|シート",
-     p:["<b>書き終えた</b>|シートを|撮る|（<a href='#sheet'>書き方</a>）","紙の|<b>全体</b>が|入るように、|<b>真上から</b>|撮る","字が|読めるように、|明るい|ところで、|影が|入らないように"],
-     note:"この写真で、|拠点の|担当者|（社員）に|共有します。"},
     {id:"10",t:"クーラント液",         d7:true,
      p:["ボンネットを|開けたら、|<b>固定のバーで|止めてから</b>|撮る","液の|<b>量</b>と|<b>目盛り</b>が|写るように","暗いときは|フラッシュを|つける","<b>キャップは|開けない。</b>|エンジンの|まわりは|さわらない"],
-     note:"タンクの|場所や形は、|車によって|ちがいます。"}
+     note:"タンクの|場所や形は、|車によって|ちがいます。"},
+    {id:"cs",img:"checksheet.jpg",t:"カーチェック|シート",
+     p:["<b>書き終えた</b>|シートを|撮る|（<a href='#sheet'>書き方</a>）","紙の|<b>全体</b>が|入るように、|<b>真上から</b>|撮る","字が|読めるように、|明るい|ところで、|影が|入らないように"],
+     note:"いちばん|最後に|撮ります。|この写真で、|拠点の|担当者|（社員）に|共有します。"}
   ];
   var h="";
   SHOTS.forEach(function(s,i){
