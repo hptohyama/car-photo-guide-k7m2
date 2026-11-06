@@ -89,13 +89,12 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <header>
   <h1>車両日報の写真撮影マニュアル</h1>
   <p class="sub">アルバイトスタッフ用 ／ 毎月7日・21日</p>
-  <p class="draft">下書きです。<span class="tbd">確認中</span> の部分はまだ決まっていません。</p>
 </header>
 
 <!-- やること -->
 <section id="intro" style="margin-top:16px">
   <ol class="flow">
-    <li><b>鍵を取る</b><br><span class="small">Hiポス事務所のポストにあります。宮原地下駐車場の車は、KDXの「FunGuys」のポストです。</span></li>
+    <li><b>鍵を取る</b><br><span class="small">鍵は、各拠点の決まった場所にあります。</span></li>
     <li>車のまわりと中を<b>目で見る</b>（傷・ガラスのひび・ドラレコの向き・車内のゴミ）</li>
     <li>下の<a href="#shots">見本</a>の順番で、<b>1台ずつ</b>撮る</li>
     <li>LINE WORKSで拠点の担当者に<b>1台ずつ</b>送る（<a href="#send">送り先</a>）</li>
@@ -125,7 +124,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   <div class="card sendex">
     <h3>送るとこう並びます（VOXYの例）</h3>
     <p class="small">LINE WORKSのトーク画面です。左から右、上から下の順に 1枚目 → 10枚目。</p>
-    <img id="sendEx" src="send_example.jpg" alt="LINE WORKSで1台分を送ったときの並び" loading="lazy" data-zoom>
+    <img id="sendEx" src="send_example.webp" alt="LINE WORKSで1台分を送ったときの並び" loading="lazy" data-zoom>
   </div>
 </section>
 
@@ -181,7 +180,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   <h2>困ったとき</h2>
   <div class="card">
     <h3>車がない（使っている・出ている）</h3>
-    <p>① <b>TimeTree（タイムツリー）</b>で、その車の予定を確認する<br>
+    <p>① <b>TimeTree（タイムツリー）</b>で予定を見るか、社員に聞いて、その車の予定を確認する<br>
        ② 使用中などのときは、その車は<b>次の日に回す</b><br>
        ③ そのことを、LINE WORKSで拠点の担当者に連絡する</p>
     <h3>傷やひびを見つけた</h3>
@@ -191,7 +190,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   </div>
 </section>
 
-<footer>車両日報 写真撮影マニュアル（下書き）</footer>
+<footer>車両日報 写真撮影マニュアル</footer>
 </div>
 
 <div id="lb" role="dialog" aria-label="写真の拡大"><img alt=""></div>
@@ -201,7 +200,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   /* 1ファイル版では画像が埋め込まれている */
   function img(n){ return (window.__IMG && window.__IMG[n]) || n; }
   function el(id){ return document.getElementById(id); }
-  var se=el("sendEx"); if(se && window.__IMG) se.src=img("send_example.jpg");
+  var se=el("sendEx"); if(se && window.__IMG) se.src=img("send_example.webp");
 
   /* ---------- 見本（VOXY） ---------- */
   var SHOTS=[
@@ -213,7 +212,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     {id:"06",t:"左後方（助手席側）", p:["助手席側の<b>後ろ半分</b>","後ろのタイヤが入るように"]},
     {id:"07",t:"後方",            p:["車の真後ろから","車全体と<b>ナンバー</b>が入るように"]},
     {id:"08",t:"メーター",         p:["<b>エンジンをかけてから</b>撮る","<b>走行距離</b>（ODOなど）の数字がはっきり読めるように","光が反射しないように角度を変える"]},
-    {id:"09",t:"ドラレコ",         p:["画面に<b>日付と時間</b>が映るように","画面が消えていたら、ボタンを押してつける <span class='tbd'>確認中</span>"],
+    {id:"09",t:"ドラレコ",         p:["画面に<b>日付と時間</b>が映るように","画面が消えていたら、ボタンを押してつける","日付や時間がずれていたら、<b>今の日時に直してから</b>撮る"],
      note:"ドラレコがない車は撮りません。"},
     {id:"10",t:"クーラント液",      d7:true,
      p:["ボンネットを開けたら、<b>固定のバーで止めてから</b>撮る","液の<b>量</b>と<b>目盛り</b>が写るように","暗いときはフラッシュをつける","<b>キャップは開けない。</b>エンジンのまわりはさわらない"],
@@ -221,7 +220,8 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   ];
   var h="";
   SHOTS.forEach(function(s,i){
-    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+".jpg")+"' alt='VOXY "+s.t+"の見本' loading='lazy' data-zoom>"
+    /* 一覧は小さい画像、押したときに大きい画像を読む */
+    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+"_s.webp")+"' data-full='"+img("voxy_"+s.id+".webp")+"' alt='VOXY "+s.t+"の見本' loading='lazy' decoding='async' width='422' height='560' data-zoom>"
       +"<div><span class='no'>"+(i+1)+"枚目</span>"+(s.d7?" <span class='tag'>7日だけ</span>":"")
       +"<h3>"+s.t+"</h3><ul class='pt'>"+s.p.map(function(x){return "<li>"+x+"</li>";}).join("")+"</ul>"
       +(s.d7?"<p class='small' style='margin:4px 0 0'>21日は撮りません。</p>":"")
@@ -234,7 +234,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   var lb=el("lb"), lbi=lb.querySelector("img");
   document.addEventListener("click",function(e){
     var im=e.target.closest("img[data-zoom]");
-    if(im){ lbi.src=im.src; lbi.alt=im.alt; lb.classList.add("open"); }
+    if(im){ lbi.src=im.getAttribute("data-full")||im.src; lbi.alt=im.alt; lb.classList.add("open"); }
   });
   lb.addEventListener("click",function(){ lb.classList.remove("open"); });
 
