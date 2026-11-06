@@ -18,6 +18,13 @@ body{margin:0;background:var(--bg);color:var(--ink);
   font-size:17px;line-height:1.7}
 .wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
 header{padding:20px 0 8px}
+header.hero{display:flex;align-items:center;gap:14px;margin-top:16px;padding:18px 16px;border-radius:14px;color:#fff;
+  background:linear-gradient(135deg,#1f6feb 0%,#3b82f6 100%);box-shadow:0 4px 14px rgba(31,111,235,.25)}
+.hero-ic{flex:none;width:52px;height:52px;border-radius:14px;background:#fff;color:#1f6feb;display:flex;align-items:center;justify-content:center}
+.hero-tx{min-width:0}
+header.hero h1{font-size:21px;line-height:1.4;margin:0 0 6px;color:#fff}
+header.hero .sub{display:inline-block;font-size:13px;color:#fff;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 12px;margin:0}
+header.hero .sep{opacity:.7;margin:0 4px}
 h1{font-size:23px;line-height:1.35;margin:0 0 4px}
 .sub{color:var(--muted);font-size:14px;margin:0}
 section{margin-top:28px;scroll-margin-top:12px}
@@ -116,8 +123,11 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <div class="wrap">
 
 <header class="hero">
-  <h1>車両日報の|写真撮影|マニュアル</h1>
-  <p class="sub">アルバイト|スタッフ用 ／ 毎月|7日・21日</p>
+  <div class="hero-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
+  <div class="hero-tx">
+    <h1>車両日報の|写真撮影|マニュアル</h1>
+    <p class="sub">アルバイト|スタッフ用<span class="sep">｜</span>毎月|7日・21日</p>
+  </div>
 </header>
 
 <!-- やること -->
@@ -125,7 +135,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   <ol class="flow">
     <li><b>鍵を|取る</b><br><span class="small">鍵は、|各拠点の|決まった|場所に|あります。</span></li>
     <li>車の|まわりと|中を|<b>目で見て|点検する</b>|（<a href="#inspect">点検すること</a>）</li>
-    <li>下の|<a href="#shots">見本</a>の|順番で、|<b>1台ずつ</b>|撮る</li>
+    <li><b>必ず</b>|下の|<a href="#shots">見本</a>の|順番で、|<b>1台ずつ</b>|撮る</li>
     <li>LINE WORKSで|拠点の|担当者に|<b>1台ずつ</b>|送る|（<a href="#send">送り先</a>）</li>
     <li>自分の|拠点の|<a href="#check">チェックリスト</a>に|全部|チェックを|入れて、|<b>送信ボタン</b>を|押す</li>
   </ol>
@@ -147,8 +157,8 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <section id="shots">
   <h2>撮る写真|（見本：VOXY）</h2>
   <div class="days">
-    <div class="day d7"><span class="dd">毎月 <b>7日</b></span><span class="dn"><b>10</b>枚</span><span class="dc">クーラント液あり</span></div>
-    <div class="day d21"><span class="dd">毎月 <b>21日</b></span><span class="dn"><b>9</b>枚</span><span class="dc">クーラント液なし</span></div>
+    <div class="day d7"><span class="dd">毎月 <b>7日</b></span><span class="dn"><b>11</b>枚</span><span class="dc">クーラント液あり</span></div>
+    <div class="day d21"><span class="dd">毎月 <b>21日</b></span><span class="dn"><b>10</b>枚</span><span class="dc">クーラント液なし</span></div>
   </div>
   <p class="small">1台あたりの|枚数です。|ドラレコが|ない車は、|ドラレコの|写真が|ないので|1枚|少なく|なります。|写真を|押すと|大きく|見られます。</p>
   <div id="shotList"></div>
@@ -160,13 +170,13 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   <p>LINE WORKSで、|拠点の|担当者との|<b>個別トーク</b>に|送ります。</p>
   <div class="card sendto" id="sendTo"></div>
   <ol class="flow">
-    <li><b>1台ずつ</b>|送る。|写真は|<b>1枚目から|順番に</b>|選んで|送信。<br><span class="small">選んだ|順に|並びます。|1台分が|1つの|まとまりに|なるので、|2台分を|一度に|選ばないで|ください。</span></li>
+    <li><b>1台ずつ</b>|送る。|写真は|<b>1枚目から|順番に</b>|選んで|送信。<br><span class="small">選んだ|順に|並びます。|2台分を|一度に|選ばないで|ください。</span></li>
     <li>全部の|車を|送る</li>
     <li>下の|<a href="#check">チェックリスト</a>で|自分の|拠点を|選び、|全部|チェックを|入れ、|名前を|書いて|<b>送信ボタン</b>を|押す</li>
   </ol>
   <div class="card sendex">
     <h3>送ると|こう|並びます|（VOXYの例）</h3>
-    <p class="small">LINE WORKSの|トーク画面です。|左から右、|上から下の|順に|1枚目 → 10枚目。</p>
+    <p class="small">LINE WORKSの|トーク画面です。|左から右、|上から下の|順に|並びます。</p>
     <img id="sendEx" src="send_example.jpg" alt="LINE WORKSで1台分を送ったときの並び" loading="lazy" data-zoom>
   </div>
 </section>
@@ -273,13 +283,15 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     {id:"08",t:"メーター",            p:["<b>エンジンを|かけてから</b>|撮る","<b>走行距離</b>|（ODOなど）の|数字が|はっきり|読めるように","光が|反射しないように|角度を|変える"]},
     {id:"09",t:"ドラレコ",            p:["画面に|<b>日付と|時間</b>が|映るように","画面が|消えていたら、|ボタンを|押して|つける","日付や|時間が|ずれていたら、|<b>今の日時に|直してから</b>|撮る"],
      note:"ドラレコが|ない車は|撮りません。"},
+    {id:"st",img:"sticker.jpg",t:"オイル交換の|ステッカー",
+     p:["車に|貼ってある|<b>オイル交換の|ステッカー</b>を|撮る","<b>交換日・|走行距離・|次回交換</b>の|字が|読めるように、|近づいて|まっすぐ|撮る","光が|反射しないように|角度を|変える"]},
     {id:"10",t:"クーラント液",         d7:true,
      p:["ボンネットを|開けたら、|<b>固定のバーで|止めてから</b>|撮る","液の|<b>量</b>と|<b>目盛り</b>が|写るように","暗いときは|フラッシュを|つける","<b>キャップは|開けない。</b>|エンジンの|まわりは|さわらない"],
      note:"タンクの|場所や形は、|車によって|ちがいます。"}
   ];
   var h="";
   SHOTS.forEach(function(s,i){
-    h+="<div class='card shot'><img src='"+img("voxy_"+s.id+".jpg")+"' alt='VOXY "+s.t.replace(/\|/g,"")+"の見本' loading='lazy' data-zoom>"
+    h+="<div class='card shot'><img src='"+img(s.img||("voxy_"+s.id+".jpg"))+"' alt='"+s.t.replace(/\|/g,"")+"の見本' loading='lazy' data-zoom>"
       +"<div><div class='badges'><span class='badge no'>"+(i+1)+"枚目</span>"+(s.d7?"<span class='badge d7'>7日だけ</span>":"")+"</div>"
       +"<h3>"+W(s.t)+"</h3>"
       +(s.d7?"<p class='only7'>"+W("毎月7日だけ|撮ります。|21日は|撮りません。")+"</p>":"")
@@ -360,7 +372,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     }).join("");
   }
   /* 選んだ拠点の車両の行 */
-  function carCount(c){ return 10-(period.coolant?0:1)-(c.nodrarec?1:0); }
+  function carCount(c){ return 11-(period.coolant?0:1)-(c.nodrarec?1:0); }
   function renderCars(){
     var s=siteOf(site), box=el("ckCars");
     if(!s || !s.cars){
