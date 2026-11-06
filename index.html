@@ -69,6 +69,7 @@ td.n{text-align:center;font-weight:700;white-space:nowrap}
 .pt{font-size:15px;margin:6px 0 0;padding-left:1.2em;line-height:1.55}
 .pt li{margin-bottom:3px}
 .carnote{font-size:14px;background:var(--accent-soft);border-radius:6px;padding:4px 8px;margin-top:6px;line-height:1.5}
+.sendex img{display:block;width:62%;max-width:260px;margin:4px auto 0;border-radius:8px;cursor:zoom-in}
 .next{display:block;width:100%;font:inherit;font-weight:700;color:#fff;background:var(--accent);border:0;border-radius:10px;padding:12px;cursor:pointer}
 .hint{font-size:13px;color:var(--muted);text-align:center;margin:-4px 0 10px}
 
@@ -111,12 +112,13 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 <!-- やること -->
 <section id="intro" style="margin-top:16px">
   <ol class="flow">
-    <li>鍵を持って、車のまわりと中を<b>目で見る</b>（傷・ガラスのひび・ドラレコの向き・車内のゴミ） <span class="tbd">鍵の場所 確認中</span></li>
+    <li><b>鍵を取る</b><br><span class="small">Hiポス事務所のポストにあります。宮原地下駐車場の車は、KDXの「FunGuys」のポストです。</span></li>
+    <li>車のまわりと中を<b>目で見る</b>（傷・ガラスのひび・ドラレコの向き・車内のゴミ）</li>
     <li>下の車の名前を押して、<b>1台ずつ</b>順番に撮る</li>
     <li>LINE WORKSで遠山さんに<b>1台ずつ</b>送る</li>
     <li><a href="#check">チェックリスト</a>をスクショして、<b>その1枚だけ</b>で送る</li>
   </ol>
-  <p class="small" style="margin:4px 0 0">傷やひびを見つけたら、その場所の写真も撮って遠山さんにすぐ伝えてください。 <span class="tbd">連絡のしかた 確認中</span></p>
+  <p class="small" style="margin:4px 0 0">傷やひびを見つけたら、その場所の写真も撮って、LINE WORKSで遠山さんにすぐ伝えてください。</p>
 </section>
 
 <!-- 車ごとの撮り方 -->
@@ -132,11 +134,16 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   <h2>遠山さんに送る</h2>
   <p>LINE WORKSの<b>遠山さんとの個別トーク</b>に送ります。</p>
   <ol class="flow">
-    <li><b>1台ずつ</b>送る。1枚目から順番に写真を選んで送信。<br><span class="small">1台分が1つのまとまりになります。2台分を一度に選ばないでください。</span> <span class="tbd">選んだ順に並ぶか 確認中</span></li>
+    <li><b>1台ずつ</b>送る。写真は<b>1枚目から順番に</b>選んで送信。<br><span class="small">選んだ順に並びます。1台分が1つのまとまりになるので、2台分を一度に選ばないでください。</span></li>
     <li>4台分を送る</li>
     <li><a href="#check">チェックリスト</a>に全部チェックを入れる</li>
     <li>チェックリストの画面を<b>スクショ</b>して、<b>その1枚だけ</b>で送る<br><span class="small">車の写真と一緒に選ばないでください。</span></li>
   </ol>
+  <div class="card sendex">
+    <h3>送るとこう並びます（VOXYの例）</h3>
+    <p class="small">左から右、上から下の順に 1枚目 → 10枚目。</p>
+    <img id="sendEx" src="send_example.jpg" alt="LINE WORKSで1台分を送ったときの並び" loading="lazy" data-zoom>
+  </div>
 </section>
 
 <!-- チェックリスト -->
@@ -176,9 +183,11 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
   <h2>困ったとき</h2>
   <div class="card">
     <h3>車がない（使っている・出ている）</h3>
-    <p><span class="tbd">確認中</span></p>
+    <p>① <b>TimeTree（タイムツリー）</b>で、その車の予定を確認する<br>
+       ② 使用中などのときは、その車は<b>次の日に回す</b><br>
+       ③ そのことを、LINE WORKSで遠山さんに連絡する</p>
     <h3>傷やひびを見つけた</h3>
-    <p>その場所の写真を撮って、遠山さんにすぐ伝えます。</p>
+    <p>その場所の写真を撮って、LINE WORKSで遠山さんにすぐ伝えます。</p>
     <h3>分からないことがある</h3>
     <p style="margin:0">遠山さんに聞いてください。</p>
   </div>
@@ -203,14 +212,14 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
     "08":{t:"メーター",         p:["<b>エンジンをかけてから</b>撮る","<b>走行距離</b>の数字がはっきり読めるように","光が反射しないように角度を変える"]},
     "09":{t:"ドラレコ",         p:["画面に<b>日付と時間</b>が映るように","画面が消えていたら、ボタンを押してつける <span class='tbd'>確認中</span>"]},
     "10":{t:"クーラント液",      d7:true,
-          p:["ボンネットを開けて、タンクを撮る <span class='tbd'>開ける人・開け方 確認中</span>","液の<b>量</b>と<b>目盛り</b>が写るように","暗いときはフラッシュをつける","<b>キャップは開けない。</b>エンジンのまわりはさわらない"]}
+          p:["ボンネットを開けたら、<b>固定のバーで止めてから</b>撮る","液の<b>量</b>と<b>目盛り</b>が写るように","暗いときはフラッシュをつける","<b>キャップは開けない。</b>エンジンのまわりはさわらない"]}
   };
   /* 車ごとの情報と、その車だけの注意 */
   var CARS=[
     {k:"voxy",  name:"VOXY",
      shots:["01","02","03","04","05","06","07","08","09","10"],
      note:{"08":"走行距離は、左下の小さな表示（ODO）の数字です。",
-           "10":"<span class='tbd'>このタンクで合っているか 確認中</span>"}},
+           "10":"黒いキャップのタンクです（MAX・MINの目盛り）。"}},
     {k:"freed", name:"FREED",
      shots:["01","02","03","04","05","06","07","08","10"], nodrarec:true,
      note:{"08":"走行距離は、真ん中の表示の「km」の数字です。",
@@ -227,6 +236,7 @@ footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
 
   /* 1ファイル版では画像が埋め込まれている */
   function img(n){ return (window.__IMG && window.__IMG[n]) || n; }
+  var se=document.getElementById("sendEx"); if(se && window.__IMG) se.src=img("send_example.jpg");
   var tabs=document.getElementById("tabs"), panel=document.getElementById("panel");
 
   CARS.forEach(function(c){
